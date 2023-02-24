@@ -1,20 +1,31 @@
 package Task3;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Task3Test {
     public static void main(String[] args) {
         List<String> number = Arrays.asList("1, 2, 0", "4, 5");
+        Task3Test test = new Task3Test();
+        System.out.println(test.getNumbers(number));
 
-        List<String> result = number.stream()
+    }
+
+    Comparator<Integer> comparator = new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1.compareTo(o2);
+        }
+    };
+
+    private List<Integer> getNumbers(List<String> number) {
+        return number.stream()
                 .map(str1 -> List.of(str1.split(", ")))
                 .flatMap(Collection::stream)
-                .sorted()
+                .map(Integer::parseInt)
+                .sorted(comparator)
                 .collect(Collectors.toList());
 
-        System.out.println(result);
     }
 }
+
