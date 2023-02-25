@@ -8,21 +8,27 @@ import java.util.stream.Collectors;
 
 public class Task1Test {
     public static void main(String[] args) {
-        List<String> namesOfPeoples = new ArrayList<>();
-        namesOfPeoples.add("1. Evgenii");
-        namesOfPeoples.add("2. Alena");
-        namesOfPeoples.add("3. Victor");
-        namesOfPeoples.add("4. Alina");
-        namesOfPeoples.add("5. Lilia");
-        namesOfPeoples.add("6. Victoria");
-        System.out.println(getNames(namesOfPeoples));
 
+        System.out.println((getNames()));
 
     }
 
-    private static List<String> getNames(List<String> peopleNames) {
-        return peopleNames.stream()
-                .filter(i -> (peopleNames.indexOf(i) % 2 == 0))
+    private static List<String> getNames() {
+        List<String> namesOfPeoples = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+
+        namesOfPeoples.add("Evgenii");
+        namesOfPeoples.add("Alena");
+        namesOfPeoples.add("Victor");
+        namesOfPeoples.add("Alina");
+        namesOfPeoples.add("Lilia");
+        namesOfPeoples.add("Victoria");
+
+        for (int i = 0; i < namesOfPeoples.size(); i++) {
+            result.add(((i) + ". " + namesOfPeoples.get(i)));
+        }
+        return result.stream()
+                .filter(i -> (result.indexOf(i) % 2 != 0))
                 .collect(Collectors.toList());
 
     }
