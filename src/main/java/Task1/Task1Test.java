@@ -15,7 +15,6 @@ public class Task1Test {
 
     private static List<String> getNames() {
         List<String> namesOfPeoples = new ArrayList<>();
-        List<String> result = new ArrayList<>();
 
         namesOfPeoples.add("Evgenii");
         namesOfPeoples.add("Alena");
@@ -25,10 +24,11 @@ public class Task1Test {
         namesOfPeoples.add("Victoria");
 
         for (int i = 0; i < namesOfPeoples.size(); i++) {
-            result.add(((i) + ". " + namesOfPeoples.get(i)));
+            namesOfPeoples.set(i, i + ". " + namesOfPeoples.get(i));
+
         }
-        return result.stream()
-                .filter(i -> (result.indexOf(i) % 2 != 0))
+        return namesOfPeoples.stream()
+                .filter(i -> (namesOfPeoples.indexOf(i) % 2 != 0))
                 .collect(Collectors.toList());
 
     }
